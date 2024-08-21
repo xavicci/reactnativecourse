@@ -1,8 +1,10 @@
 import {createStackNavigator} from '@react-navigation/stack';
+import {useEffect} from 'react';
 import HomeScreen from '../screens/home/HomeScreen';
 import {ProductsScreen} from '../screens/products/ProductsScreen';
 import {SettingsScreen} from '../screens/setting/SettingsScreen';
 import {ProductScreen} from '../screens/products/ProductScreen';
+import {useNavigation} from '@react-navigation/native';
 
 interface listProducts {
   id: number;
@@ -19,6 +21,14 @@ export type RootStackParams = {
 const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+
   return (
     <Stack.Navigator
       screenOptions={{

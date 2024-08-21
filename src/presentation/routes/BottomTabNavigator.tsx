@@ -1,10 +1,12 @@
+import {Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Tab1Screen} from '../screens/tabs/Tab1Screen';
 // import {Tab2Screen} from '../screens/tabs/Tab2Screen';
 import {Tab3Screen} from '../screens/tabs/Tab3Screen';
 import {globalColors} from '../theme/theme';
-import {Text} from 'react-native';
 import {TopTabsNavigator} from './TopTabsNavigator';
+import {StackNavigator} from './StackNavigator';
+import IonIcon from '../components/shared/IonIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +17,7 @@ export const BottomTabNavigator = () => {
         backgroundColor: globalColors.background,
       }}
       screenOptions={{
+        tabBarActiveTintColor: globalColors.primary,
         tabBarLabelStyle: {
           marginBottom: 5,
         },
@@ -30,16 +33,20 @@ export const BottomTabNavigator = () => {
       <Tab.Screen
         name="Tab1"
         options={{
-          title: 'Tab1a',
-          tabBarIcon: ({color}) => <Text style={{color}}>Tab1i</Text>,
+          title: 'Tab1',
+          tabBarIcon: ({color}) => (
+            <IonIcon name="accessibility-outline" color={color} />
+          ),
         }}
         component={Tab1Screen}
       />
       <Tab.Screen
         name="Tab2"
         options={{
-          title: 'Tab2a',
-          tabBarIcon: ({color}) => <Text style={{color}}>Tab2i</Text>,
+          title: 'Tab2',
+          tabBarIcon: ({color}) => (
+            <IonIcon name="airplane-outline" color={color} />
+          ),
         }}
         component={TopTabsNavigator}
       />
@@ -47,9 +54,11 @@ export const BottomTabNavigator = () => {
         name="Tab3"
         options={{
           title: 'Tab3a',
-          tabBarIcon: ({color}) => <Text style={{color}}>Tab3i</Text>,
+          tabBarIcon: ({color}) => (
+            <IonIcon name="bar-chart-outline" color={color} />
+          ),
         }}
-        component={Tab3Screen}
+        component={StackNavigator}
       />
     </Tab.Navigator>
   );
